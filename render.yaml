@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: five-years-together
+    runtime: static
+    buildCommand: echo "Static site — no build step"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false

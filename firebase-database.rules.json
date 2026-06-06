@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "rooms": {
+      "762021-omar-hiba": {
+        "messages": {
+          ".read": true,
+          ".write": true,
+          "$messageId": {
+            ".validate": "newData.hasChildren(['from', 'text', 'createdAt']) && (newData.child('from').val() === 'omar' || newData.child('from').val() === 'hiba') && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 2000 && newData.child('createdAt').isNumber()"
+          }
+        },
+        "qa": {
+          ".read": true,
+          "$questionId": {
+            "omar": {
+              ".write": true,
+              ".validate": "newData.hasChildren(['text', 'updatedAt']) && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 1000 && newData.child('updatedAt').isNumber()"
+            },
+            "hiba": {
+              ".write": true,
+              ".validate": "newData.hasChildren(['text', 'updatedAt']) && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 1000 && newData.child('updatedAt').isNumber()"
+            }
+          }
+        }
+      }
+    }
+  }
+}

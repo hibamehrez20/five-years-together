@@ -1,0 +1,292 @@
+/* ===== Passcode Gate ===== */
+.passcode-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:
+    env(safe-area-inset-top, 0)
+    env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 0)
+    env(safe-area-inset-left, 0);
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(180, 60, 60, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(120, 30, 30, 0.4) 0%, transparent 45%),
+    linear-gradient(145deg, #5a1010 0%, #7a1515 40%, #6b1212 100%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.passcode-gate.is-unlocked {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.passcode-gate--waiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.passcode-gate--ready {
+  z-index: 10002;
+  pointer-events: auto;
+}
+
+.passcode-gate__inner,
+.passcode-error {
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.passcode-gate__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 8vw, 6rem);
+  padding: 2rem;
+  max-width: 960px;
+  width: 100%;
+}
+
+/* Polaroid */
+.polaroid {
+  flex-shrink: 0;
+  position: relative;
+  transform: rotate(-6deg);
+  filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.35));
+}
+
+.polaroid__ribbon {
+  position: absolute;
+  top: -12px;
+  left: 18px;
+  z-index: 2;
+  font-size: 2.4rem;
+  line-height: 1;
+  transform: rotate(12deg);
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.polaroid__frame {
+  background: #fff;
+  padding: 14px 14px 52px;
+  width: clamp(200px, 32vw, 280px);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.polaroid__photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #e8e4e0;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.polaroid__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid__caption {
+  margin-top: 14px;
+  text-align: center;
+  font-family: 'Segoe Script', 'Bradley Hand', 'Comic Sans MS', cursive;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #2a2a2a;
+  letter-spacing: 0.02em;
+}
+
+/* Passcode panel */
+.passcode-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 2rem 2.25rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+}
+
+.passcode-panel__lock {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  filter: sepia(1) saturate(3) hue-rotate(5deg) brightness(1.1);
+}
+
+.passcode-panel__title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.25rem;
+}
+
+.passcode-dots {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 1.75rem;
+}
+
+.passcode-dot {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.passcode-dot.is-filled::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.passcode-dot.is-active {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.passcode-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  width: min(240px, 72vw);
+  touch-action: manipulation;
+  position: relative;
+  z-index: 2;
+}
+
+.passcode-key {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.passcode-key:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+}
+
+.passcode-key:active {
+  transform: scale(0.94);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.passcode-key--back {
+  font-size: 1.1rem;
+}
+
+.passcode-key--dot {
+  pointer-events: none;
+  visibility: hidden;
+  box-shadow: none;
+}
+
+.passcode-error {
+  position: absolute;
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffb4b4;
+  font-size: 0.95rem;
+  text-align: center;
+  min-height: 1.4em;
+  opacity: 0;
+  transition: opacity 0.3s;
+  max-width: 90%;
+}
+
+.passcode-error.is-visible {
+  opacity: 1;
+}
+
+.passcode-gate.is-shake .passcode-panel {
+  animation: gateShake 0.45s ease;
+}
+
+@keyframes gateShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+@media (max-width: 640px) {
+  .passcode-gate__inner {
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .passcode-panel {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+    width: min(100%, 320px);
+  }
+
+  .polaroid {
+    transform: rotate(-3deg);
+  }
+
+  .polaroid__frame {
+    width: clamp(175px, 52vw, 240px);
+  }
+
+  .passcode-panel__title {
+    letter-spacing: 0.28em;
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .passcode-keypad {
+    width: min(250px, 78vw);
+    gap: 0.75rem;
+  }
+
+  .passcode-key {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .passcode-error {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0));
+    font-size: 0.88rem;
+    padding: 0 1rem;
+  }
+}

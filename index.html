@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Omar & Hiba — 5 Years ♥</title>
+  <meta name="description" content="Omar & Hiba — our story since June 7, 2021. Open me ♥">
+  <meta property="og:title" content="Omar & Hiba — Our Story ♥">
+  <meta property="og:description" content="Someone made something special for you. Tap to open ♥">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f5e6e8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Omar & Hiba">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/app-icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=24">
+  <link rel="stylesheet" href="responsive.css?v=1">
+  <link rel="stylesheet" href="polish.css?v=1">
+  <link rel="stylesheet" href="book.css?v=4">
+  <link rel="stylesheet" href="voice.css?v=2">
+  <link rel="stylesheet" href="party.css">
+  <link rel="stylesheet" href="gate.css?v=17">
+  <link rel="stylesheet" href="splash.css?v=7">
+</head>
+<body class="lang-ar">
+  <div class="splash-sequence is-active" id="splash-sequence" aria-hidden="false">
+    <canvas id="splash-fireworks" class="splash-fireworks" aria-hidden="true"></canvas>
+    <div class="splash-slides" id="splash-slides">
+      <article class="splash-screen is-active" data-splash="0">
+        <span class="splash-screen__eyebrow" id="splash-1-eyebrow">Our story</span>
+        <h1 class="splash-screen__title" id="splash-1-title">Omar & Hiba</h1>
+        <span class="splash-screen__ornament" aria-hidden="true">♥</span>
+      </article>
+      <article class="splash-screen" data-splash="1">
+        <p class="splash-screen__date" id="splash-2-date">07/06/21</p>
+        <p class="splash-screen__line" id="splash-2-line">Where it all began</p>
+      </article>
+      <article class="splash-screen" data-splash="2">
+        <span class="splash-screen__heart" aria-hidden="true">♥</span>
+        <p class="splash-screen__line splash-screen__line--wide" id="splash-3-line">I made something special for you</p>
+        <p class="splash-screen__hint" id="splash-3-hint">Tap to continue ♥</p>
+      </article>
+    </div>
+    <div class="splash-footer">
+      <div class="splash-progress" id="splash-progress" aria-hidden="true">
+        <span class="splash-progress__dot is-active"></span>
+        <span class="splash-progress__dot"></span>
+        <span class="splash-progress__dot"></span>
+      </div>
+      <p class="splash-tap-hint" id="splash-tap-hint">Tap to continue</p>
+    </div>
+  </div>
+
+  <div id="passcode-gate" class="passcode-gate passcode-gate--waiting" lang="en" dir="ltr" aria-hidden="true">
+    <div class="passcode-gate__inner">
+      <div class="polaroid">
+        <span class="polaroid__ribbon" aria-hidden="true">🎀</span>
+        <div class="polaroid__frame">
+          <div class="polaroid__photo">
+            <img id="polaroid-photo" src="" alt="Omar & Hiba">
+          </div>
+          <p class="polaroid__caption" id="polaroid-caption">5 Years Together ♥</p>
+        </div>
+      </div>
+
+      <div class="passcode-panel">
+        <span class="passcode-panel__lock" aria-hidden="true">🔒</span>
+        <p class="passcode-panel__title" id="passcode-panel-title">ENTER A PASSCODE</p>
+        <div class="passcode-dots" id="passcode-dots" aria-label="Passcode entry">
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+        </div>
+        <div class="passcode-keypad">
+          <button type="button" class="passcode-key" data-digit="1">1</button>
+          <button type="button" class="passcode-key" data-digit="2">2</button>
+          <button type="button" class="passcode-key" data-digit="3">3</button>
+          <button type="button" class="passcode-key" data-digit="4">4</button>
+          <button type="button" class="passcode-key" data-digit="5">5</button>
+          <button type="button" class="passcode-key" data-digit="6">6</button>
+          <button type="button" class="passcode-key" data-digit="7">7</button>
+          <button type="button" class="passcode-key" data-digit="8">8</button>
+          <button type="button" class="passcode-key" data-digit="9">9</button>
+          <button type="button" class="passcode-key passcode-key--dot" aria-hidden="true">.</button>
+          <button type="button" class="passcode-key" data-digit="0">0</button>
+          <button type="button" class="passcode-key passcode-key--back" id="passcode-back" aria-label="Delete">⌫</button>
+        </div>
+      </div>
+    </div>
+    <p class="passcode-error" id="passcode-error" role="alert"></p>
+  </div>
+
+  <div class="hearts-bg" aria-hidden="true"></div>
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true">
+    <span class="scroll-progress__bar" id="scroll-progress-bar"></span>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    <div class="nav-inner">
+      <span class="nav-logo" id="nav-logo">♥ Omar & Hiba</span>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" id="nav-home">Home</a></li>
+        <li><a href="#counter" id="nav-time">Our Time</a></li>
+        <li><a href="#gallery" id="nav-gallery">Gallery</a></li>
+        <li><a href="#videos" id="nav-videos">Videos</a></li>
+        <li><a href="#live-chat" id="nav-chat">Our Chat</a></li>
+        <li><a href="#jar" id="nav-jar">365 Jar</a></li>
+        <li><a href="#questions" id="nav-questions">Questions</a></li>
+        <li><a href="#reasons" id="nav-reasons">100 Reasons</a></li>
+        <li><a href="#timeline" id="nav-memories">Our Memories</a></li>
+        <li><a href="#letters" id="nav-letters">My Letters</a></li>
+        <li><a href="#voice-note" id="nav-voice">My Voice</a></li>
+        <li><a href="#storytime" id="nav-story">The Story</a></li>
+        <li><a href="#book-gift" id="nav-book">Your Book</a></li>
+        <li><a href="#party" id="nav-party">Surprise</a></li>
+        <li><a href="#letter-btn" class="nav-heart" id="nav-open-heart">My Heart</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">عربي</button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="hero-content fade-in">
+      <p class="hero-subtitle" id="hero-subtitle">a story</p>
+      <h1 class="hero-title">
+        <span id="hero-title1">Omar &</span><br>
+        <span class="hero-title-accent" id="hero-title2">Hiba</span>
+      </h1>
+      <p class="hero-date" id="hero-date">Since June 7, 2021</p>
+      <div class="hero-music fade-in" id="hero-music">
+        <div class="hero-music__disc-wrap" aria-hidden="true">
+          <div class="hero-music__disc">
+            <span class="hero-music__disc-heart">♥</span>
+          </div>
+          <span class="hero-music__note hero-music__note--1">♪</span>
+          <span class="hero-music__note hero-music__note--2">♫</span>
+        </div>
+        <div class="hero-music__info">
+          <p class="hero-music__label" id="hero-music-label">Our song ♥</p>
+          <p class="hero-music__title" id="hero-music-title">Omry Ebtada</p>
+          <p class="hero-music__artist" id="hero-music-artist">Tamer Hosny</p>
+          <div class="hero-music__bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <button type="button" class="hero-music__btn" id="hero-music-toggle" aria-label="Play our song">
+          <svg class="hero-music__icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg class="hero-music__icon-pause hidden" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+        </button>
+        <audio id="our-song" loop preload="auto">
+          <source src="music/our-song.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="hero-divider"></div>
+      <p class="hero-quote" id="hero-quote">"Five years together — and I'd still choose you in a heartbeat ♥"</p>
+      <div class="hero-daily-jar fade-in" id="hero-daily-jar">
+        <p class="hero-daily-jar__label" id="hero-daily-jar-label">Today's note from Hiba</p>
+        <blockquote class="hero-daily-jar__text" id="hero-daily-jar-text"></blockquote>
+        <a href="#jar" class="hero-daily-jar__link" id="hero-daily-jar-link">Open a jar →</a>
+      </div>
+      <a href="#counter" class="hero-scroll">
+        <span id="hero-scroll">Explore our story</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-ring"></div>
+  </section>
+
+  <section id="counter" class="counter-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="counter-title">Our Time Together</h2>
+      <p class="section-subtitle fade-up" id="counter-subtitle">Every second with you — even the moments when we're not talking</p>
+      <div class="counter-grid fade-up">
+        <div class="counter-item">
+          <span class="counter-value" id="days">0</span>
+          <span class="counter-label" id="label-days">Days</span>
+        </div>
+        <div class="counter-item">
+          <span class="counter-value" id="hours">0</span>
+          <span class="counter-label" id="label-hours">Hours</span>
+        </div>
+        <div class="counter-item">
+          <span class="counter-value" id="minutes">0</span>
+          <span class="counter-label" id="label-minutes">Minutes</span>
+        </div>
+        <div class="counter-item">
+          <span class="counter-value" id="seconds">0</span>
+          <span class="counter-label" id="label-seconds">Seconds</span>
+        </div>
+      </div>
+      <p class="counter-since">
+        <span id="counter-since">Together since</span>
+        <strong id="counter-start-date">June 7, 2021</strong>
+      </p>
+      <p class="counter-scroll-hint fade-up" id="counter-scroll-hint">Keep scrolling… something's waiting at the end ♥</p>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="gallery-title">Our Moments</h2>
+      <p class="section-subtitle fade-up" id="gallery-subtitle">Beautiful memories between us</p>
+      <div class="gallery-grid gallery-grid--masonry fade-up" id="gallery-grid"></div>
+      <button class="gallery-load-more hidden" id="gallery-load-more" type="button"></button>
+      <p class="gallery-hint" id="gallery-hint"></p>
+    </div>
+  </section>
+
+  <section id="videos" class="videos-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="videos-title">Our Videos</h2>
+      <p class="section-subtitle fade-up" id="videos-subtitle">Moving memories of us</p>
+      <div class="videos-grid fade-up" id="videos-grid"></div>
+    </div>
+  </section>
+
+  <section id="live-chat" class="live-chat-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="live-chat-title">Our Chat</h2>
+      <p class="section-subtitle fade-up" id="live-chat-subtitle">Just for us — message each other here, anytime ♥</p>
+
+      <div class="live-chat-setup hidden" id="live-chat-setup">
+        <p class="live-chat-setup__title" id="live-chat-setup-title"></p>
+        <ol class="live-chat-setup__steps" id="live-chat-setup-steps"></ol>
+      </div>
+
+      <div class="live-chat-identity hidden" id="live-chat-identity">
+        <p class="live-chat-identity__prompt" id="live-chat-identity-prompt">Who are you?</p>
+        <div class="live-chat-identity__btns">
+          <button type="button" class="live-chat-identity-btn live-chat-identity-btn--omar" id="live-chat-pick-omar">I'm Omar</button>
+          <button type="button" class="live-chat-identity-btn live-chat-identity-btn--hiba" id="live-chat-pick-hiba">I'm Hiba</button>
+        </div>
+      </div>
+
+      <div class="live-chat-wrap hidden fade-up" id="live-chat-wrap">
+        <div class="chat-phone">
+          <div class="chat-phone__header">
+            <div class="chat-phone__avatar" aria-hidden="true">♥</div>
+            <div class="chat-phone__meta">
+              <strong id="live-chat-header-title">Omar</strong>
+              <span id="live-chat-header-status">online</span>
+            </div>
+          </div>
+          <div class="chat-phone__body" id="live-chat-messages" aria-live="polite"></div>
+          <button type="button" class="live-chat-jar-send hidden" id="live-chat-send-jar-note">Send today's jar note</button>
+          <form class="chat-phone__composer" id="live-chat-form">
+            <input type="text" id="live-chat-input" maxlength="2000" autocomplete="off" placeholder="Type a message…">
+            <button type="submit" class="chat-phone__send" id="live-chat-send" aria-label="Send">♥</button>
+          </form>
+        </div>
+        <button type="button" class="live-chat-switch" id="live-chat-switch">Switch who I am</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="jar" class="jar-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="jar-title">365 Messages For You</h2>
+      <p class="section-subtitle fade-up" id="jar-subtitle">Pick a jar for how you feel — each one holds a little note from me</p>
+      <div class="jar-grid fade-up" id="jar-grid"></div>
+      <p class="jar-footer fade-up" id="jar-footer">365 messages — a different one every time you open ♥</p>
+    </div>
+  </section>
+
+  <section id="questions" class="questions-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="questions-title">Questions For Us</h2>
+      <p class="section-subtitle fade-up" id="questions-subtitle">Answer together — on a call or here — and read what the other wrote ♥</p>
+
+      <div class="questions-setup hidden fade-up" id="questions-setup">
+        <p class="questions-setup__hint" id="questions-setup-hint"></p>
+      </div>
+
+      <div class="questions-identity hidden fade-up" id="questions-identity">
+        <p class="questions-identity__prompt" id="questions-identity-prompt">Who are you?</p>
+        <div class="questions-identity__btns">
+          <button type="button" class="live-chat-identity-btn live-chat-identity-btn--omar" id="questions-pick-omar">I'm Omar</button>
+          <button type="button" class="live-chat-identity-btn live-chat-identity-btn--hiba" id="questions-pick-hiba">I'm Hiba</button>
+        </div>
+      </div>
+
+      <div class="questions-wrap hidden fade-up" id="questions-wrap">
+        <button type="button" class="questions-switch" id="questions-switch">Switch who I am</button>
+        <div class="questions-list" id="questions-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reasons" class="reasons-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="reasons-title">100 Reasons Why I Love You</h2>
+      <p class="section-subtitle fade-up" id="reasons-subtitle">Because one reason was never enough (and honestly I could write 1000)</p>
+      <div class="reason-daily-wrap fade-up">
+        <button type="button" class="reason-daily-btn" id="reason-daily-btn">Give me one reason today</button>
+        <div class="reason-daily hidden" id="reason-daily" aria-live="polite">
+          <span class="reason-daily__label" id="reason-daily-label">Today's reason</span>
+          <p class="reason-daily__text" id="reason-daily-text"></p>
+          <button type="button" class="reason-daily-again hidden" id="reason-daily-again">Give me another ♥</button>
+        </div>
+      </div>
+      <div class="reasons-grid" id="reasons-grid"></div>
+    </div>
+  </section>
+
+  <section id="timeline" class="timeline-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="timeline-title">Our Story</h2>
+      <p class="section-subtitle fade-up" id="timeline-subtitle">The timeline that holds everything between us</p>
+      <div class="timeline fade-up" id="timeline"></div>
+    </div>
+  </section>
+
+  <section id="letters" class="letters-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="letters-title">Letters For You</h2>
+      <p class="section-subtitle fade-up" id="letters-subtitle">Words I wrote for you — open when your heart needs them ♥</p>
+      <div class="letters-grid fade-up" id="letters-grid"></div>
+    </div>
+  </section>
+
+  <section id="voice-note" class="voice-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="voice-note-title">A Voice Note For You</h2>
+      <p class="section-subtitle fade-up" id="voice-note-subtitle">I recorded this just for you — listen when you're alone and you miss me ♥</p>
+
+      <article class="voice-card fade-up" id="voice-card">
+        <div class="voice-card__glow" aria-hidden="true"></div>
+        <header class="voice-card__header">
+          <p class="voice-card__badge">
+            <span class="voice-card__badge-icon" aria-hidden="true">🎙</span>
+            <span id="voice-badge">Voice message</span>
+          </p>
+          <p class="voice-card__dedication" id="voice-dedication">From my heart to yours ♥</p>
+        </header>
+
+        <div class="voice-player" id="voice-player">
+          <button type="button" class="voice-player__btn" id="voice-play-btn" aria-label="Play my voice">
+            <svg class="voice-player__icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="voice-player__icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"/>
+            </svg>
+          </button>
+          <div class="voice-player__body">
+            <div class="voice-player__wave" aria-hidden="true">
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+              <span class="voice-player__bar"></span>
+            </div>
+            <div class="voice-player__progress-wrap">
+              <span class="voice-player__progress-fill" id="voice-progress-fill"></span>
+              <input type="range" class="voice-player__progress" id="voice-progress" min="0" max="100" value="0" step="0.1" aria-label="Voice progress">
+            </div>
+            <div class="voice-player__meta">
+              <span class="voice-player__status" id="voice-status">Playing…</span>
+              <span class="voice-player__time">
+                <span id="voice-time-current">0:00</span>
+                <span aria-hidden="true"> / </span>
+                <span id="voice-time-total">0:00</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <p class="voice-card__hint" id="voice-hint">Best with headphones, when you have a quiet moment 🤍</p>
+
+        <audio id="hiba-voice" preload="metadata">
+          <source src="voice/hiba-to-omar.mp4" type="audio/mp4">
+        </audio>
+      </article>
+    </div>
+  </section>
+
+  <section id="storytime" class="storytime-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="storytime-title">Story Time</h2>
+      <p class="section-subtitle fade-up" id="storytime-subtitle">How I see our days ahead</p>
+
+      <article class="storytime-book fade-up">
+        <div class="storytime-book__glow" aria-hidden="true"></div>
+        <div class="storytime-book__decor" aria-hidden="true">
+          <span class="storytime-icon">🏠</span>
+          <span class="storytime-icon">👨‍👩‍👧‍👦</span>
+          <span class="storytime-icon">♥</span>
+        </div>
+        <header class="storytime-book__header">
+          <p class="storytime-book__label" id="storytime-label">Imagine tomorrow...</p>
+          <h3 class="storytime-book__names" id="storytime-names">You & me... and the life waiting for us 🤍</h3>
+        </header>
+        <div class="storytime-book__body" id="storytime-body"></div>
+        <footer class="storytime-book__footer">
+          <p id="storytime-closing">— yours, Hiba 🤍</p>
+        </footer>
+      </article>
+    </div>
+  </section>
+
+  <section id="book-gift" class="book-gift-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="book-gift-title">Our Book</h2>
+      <p class="section-subtitle fade-up" id="book-gift-subtitle">Read it slowly — I put my heart in every page ♥</p>
+
+      <article class="book-gift-card fade-up">
+        <span class="book-gift-card__ribbon" id="book-gift-ribbon">Gift ♥</span>
+        <button type="button" class="book-gift-cover" id="book-gift-cover-btn" aria-label="Read the book">
+          <span class="book-gift-cover__spine" aria-hidden="true"></span>
+          <span class="book-gift-cover__face">
+            <span class="book-gift-cover__tag" id="book-gift-to">For Omar</span>
+            <h3 class="book-gift-cover__title" id="book-gift-cover-title">For Us In Halal, a Meeting</h3>
+            <span class="book-gift-cover__heart" aria-hidden="true">♥</span>
+          </span>
+        </button>
+        <div class="book-gift-card__body">
+          <p class="book-gift-card__desc" id="book-gift-note">Written with love, for you</p>
+          <div class="book-gift-card__actions">
+            <button type="button" class="book-gift-read" id="book-gift-read">Read the book</button>
+            <a class="book-gift-download-inline" id="book-gift-download-inline" href="book/gift-book.pdf" download="gift-book.pdf">Download PDF</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="party" class="party-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="party-title">A Little Party For Us</h2>
+      <p class="section-subtitle fade-up" id="party-subtitle">Right where our story began</p>
+
+      <div class="party-location fade-up">
+        <span class="party-pin">📍</span>
+        <div class="party-location-text">
+          <strong id="party-place-name">Our First Table ♥</strong>
+          <span id="party-place-tag">The place where we met and started getting to know each other</span>
+        </div>
+      </div>
+
+      <div class="party-room-wrap fade-up">
+        <div class="party-room">
+          <div class="party-room__ceiling"></div>
+          <div class="party-room__wall party-room__wall--back">
+            <div class="party-window"></div>
+            <div class="party-window"></div>
+            <div class="party-window"></div>
+          </div>
+          <div class="party-room__wall party-room__wall--left"></div>
+          <div class="party-room__wall party-room__wall--right"></div>
+          <div class="party-room__floor"></div>
+          <div class="party-room__glow"></div>
+
+          <div class="party-streamers" id="party-streamers"></div>
+          <div class="party-balloons-layer" id="party-balloons"></div>
+          <div class="party-confetti-layer" id="party-confetti-rain"></div>
+
+          <div class="party-memories party-memories--left" id="party-memories-left" aria-label="Our photos"></div>
+          <div class="party-memories party-memories--right" id="party-memories-right"></div>
+
+          <div class="party-scene">
+            <div class="party-chair party-chair--bl"></div>
+            <div class="party-chair party-chair--br"></div>
+            <div class="party-chair party-chair--fl"></div>
+            <div class="party-chair party-chair--fr"></div>
+
+            <div class="party-round-table">
+              <div class="party-tablecloth" aria-hidden="true"></div>
+
+              <div class="party-table-top">
+                <div class="party-setting party-setting--1"><span class="party-plate"></span><span class="party-cup party-cup--yellow"></span></div>
+                <div class="party-setting party-setting--2"><span class="party-plate"></span><span class="party-flower"></span></div>
+                <div class="party-setting party-setting--3"><span class="party-plate"></span><span class="party-cup party-cup--blue"></span></div>
+                <div class="party-setting party-setting--4"><span class="party-plate"></span><span class="party-cup party-cup--yellow"></span></div>
+                <div class="party-setting party-setting--5"><span class="party-plate"></span><span class="party-flower"></span></div>
+                <div class="party-setting party-setting--6"><span class="party-plate"></span><span class="party-cup party-cup--blue"></span></div>
+
+                <div class="party-cake">
+                  <div class="party-cake__plate"></div>
+                  <div class="party-cake__body">
+                    <div class="party-cake__tier party-cake__tier--bottom"></div>
+                    <div class="party-cake__band party-cake__band--bottom"></div>
+                    <div class="party-cake__tier party-cake__tier--top"></div>
+                    <div class="party-cake__band party-cake__band--top"></div>
+                    <div class="party-cake__candles" aria-hidden="true">
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                      <span class="party-candle"><i class="party-candle__stick"></i><i class="party-candle__flame"></i></span>
+                    </div>
+                    <div class="party-volcano" id="party-volcano"></div>
+                  </div>
+                </div>
+
+                <button class="party-table-card" id="party-card" type="button">
+                  <span class="party-table-card__base">
+                    <span class="party-table-card__front">
+                      <span class="party-table-card__icon">💌</span>
+                      <span class="party-table-card__hint" id="party-card-hint">Tap to open me</span>
+                      <span class="party-table-card__sub" id="party-card-sub">Something sweet is waiting 💌</span>
+                    </span>
+                    <span class="party-table-card__flap"></span>
+                  </span>
+                </button>
+
+                <div class="party-table-slice">
+                  <div class="party-slice-plate">
+                    <div class="party-cake-slice"></div>
+                    <div class="party-mini-candles" aria-hidden="true">
+                      <span class="party-mini-candle"><i class="party-mini-candle__stick"></i><i class="party-mini-flame"></i></span>
+                      <span class="party-mini-candle"><i class="party-mini-candle__stick"></i><i class="party-mini-flame"></i></span>
+                      <span class="party-mini-candle"><i class="party-mini-candle__stick"></i><i class="party-mini-flame"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="party-modal" id="party-modal" aria-hidden="true">
+    <div class="party-modal-backdrop"></div>
+    <div class="party-paper-wrap" id="party-paper-wrap">
+      <button class="party-modal-close" id="party-modal-close" aria-label="Close">&times;</button>
+      <div class="party-paper" id="party-paper">
+        <div class="party-paper__shell">
+          <div class="party-paper__fold party-paper__fold--left"></div>
+          <div class="party-paper__fold party-paper__fold--right"></div>
+        </div>
+        <div class="party-paper__content">
+          <div class="party-modal-stars" id="party-modal-stars" aria-hidden="true"></div>
+          <p class="party-modal-greeting" id="party-modal-greeting"></p>
+          <div class="party-modal-body" id="party-modal-body"></div>
+          <p class="party-modal-sign" id="party-modal-sign"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-gift-modal" id="book-gift-modal" aria-hidden="true">
+    <div class="book-gift-modal__backdrop" data-book-close></div>
+    <div class="book-gift-modal__panel" role="dialog" aria-modal="true" aria-labelledby="book-gift-modal-title">
+      <header class="book-gift-modal__head">
+        <h3 class="book-gift-modal__title" id="book-gift-modal-title">For Us in Halal, a Meeting</h3>
+        <div class="book-gift-modal__tools">
+          <a class="book-gift-modal__download book-gift-modal__download--head" id="book-gift-download-head" href="book/gift-book.pdf" download="gift-book.pdf">Save a copy</a>
+          <button type="button" class="book-gift-modal__close" id="book-gift-modal-close" data-book-close aria-label="Close">&times;</button>
+        </div>
+      </header>
+      <div class="book-gift-modal__viewer" id="book-gift-viewer">
+        <iframe class="book-gift-modal__iframe" id="book-gift-iframe" title="Book reader"></iframe>
+        <div class="book-gift-modal__pdfjs hidden" id="book-gift-pdfjs"></div>
+      </div>
+      <footer class="book-gift-modal__foot">
+        <a class="book-gift-modal__download" id="book-gift-download" href="book/gift-book.pdf" download="gift-book.pdf">Save a copy</a>
+      </footer>
+    </div>
+  </div>
+
+  <section class="heart-section">
+    <div class="container">
+      <h2 class="section-title fade-up" id="heart-section-title">My Heart</h2>
+      <p class="section-subtitle fade-up" id="heart-section-subtitle">Something I saved just for you — read it when you're ready</p>
+      <div class="heart-invite fade-up">
+        <button class="heart-envelope" id="letter-btn" type="button">
+          <span class="heart-envelope__glow" aria-hidden="true"></span>
+          <span class="heart-envelope__flap" aria-hidden="true"></span>
+          <span class="heart-envelope__body">
+            <span class="heart-envelope__seal" aria-hidden="true">♥</span>
+            <span class="heart-envelope__tag" id="heart-envelope-tag">For your eyes only</span>
+            <span class="heart-envelope__to" id="heart-envelope-to">Omar</span>
+            <span class="heart-envelope__hint" id="letter-open-btn">Open my heart</span>
+          </span>
+        </button>
+        <p class="heart-invite__note" id="heart-invite-note">Tap the seal to open</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="letter-modal" id="letter-modal" aria-hidden="true">
+    <div class="letter-modal-backdrop"></div>
+    <div class="letter-modal-content">
+      <button class="letter-close" id="letter-close" aria-label="Close letter">&times;</button>
+      <div class="letter-paper">
+        <span class="letter-paper__fold" aria-hidden="true"></span>
+        <span class="letter-paper__margin" aria-hidden="true"></span>
+        <header class="letter-paper__head">
+          <span class="letter-paper__tag" id="letter-paper-tag">From Hiba with love</span>
+          <span class="letter-paper__seal" aria-hidden="true">♥</span>
+        </header>
+        <p class="letter-greeting" id="letter-greeting">Five years... and I still choose you 🤍</p>
+        <div class="letter-body" id="letter-body"></div>
+        <p class="letter-signoff" id="letter-signoff">Always yours,<br><em id="letter-signature">Hiba 🤍</em></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jar-modal" id="jar-modal" aria-hidden="true">
+    <div class="jar-modal-backdrop"></div>
+    <div class="jar-modal-content">
+      <button class="jar-modal-close" id="jar-modal-close" aria-label="Close">&times;</button>
+      <p class="jar-modal-label" id="jar-modal-label"></p>
+      <div class="jar-modal-note">
+        <p class="jar-modal-body" id="jar-modal-body"></p>
+      </div>
+      <button type="button" class="jar-modal-again" id="jar-modal-again">Close</button>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">&#8249;</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next">&#8250;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <canvas id="party-fireworks" class="party-fireworks" aria-hidden="true"></canvas>
+  <div id="party-atmosphere" class="party-atmosphere" aria-hidden="true"></div>
+
+  <footer class="footer">
+    <p id="footer-line1">Made with ♥ — for the one who became my life, not just my love</p>
+    <p class="footer-date" id="footer-line2">June 7, 2021 — still choosing you</p>
+  </footer>
+
+  <script src="gallery-data.js?v=13"></script>
+  <script src="gate.js?v=21"></script>
+  <script src="translations.js?v=33"></script>
+  <script src="reasons-i18n.js?v=14"></script>
+  <script src="photo-messages-i18n.js?v=13"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js?v=3"></script>
+  <script src="live-chat.js?v=2"></script>
+  <script src="jar-messages-i18n.js?v=6"></script>
+  <script src="jar-messages.js?v=4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="book-data.js?v=2"></script>
+  <script src="book-reader.js?v=4"></script>
+  <script src="voice-data.js?v=1"></script>
+  <script src="voice-message.js?v=2"></script>
+  <script src="questions.js?v=2"></script>
+  <script src="script.js?v=32"></script>
+</body>
+</html>

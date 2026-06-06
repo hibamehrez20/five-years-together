@@ -1,0 +1,25 @@
+{
+  "name": "Omar & Hiba — Our Story",
+  "short_name": "Omar & Hiba",
+  "description": "Our story since June 7, 2021. Open me ♥",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5e6e8",
+  "theme_color": "#f5e6e8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/app-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
