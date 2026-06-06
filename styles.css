@@ -563,6 +563,21 @@ body.lang-ar .hero-music__artist {
   box-shadow: 0 6px 18px rgba(158, 79, 79, 0.4);
 }
 
+.hero-music.needs-tap .hero-music__btn {
+  animation: heroMusicTapPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes heroMusicTapPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(158, 79, 79, 0.35);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(158, 79, 79, 0.2), 0 6px 18px rgba(158, 79, 79, 0.45);
+  }
+}
+
 .hero-divider {
   width: 60px;
   height: 1px;

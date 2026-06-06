@@ -767,19 +767,81 @@ const heroMusicToggle = document.getElementById('hero-music-toggle');
 const ourSong = document.getElementById('our-song');
 const heroIconPlay = heroMusicToggle?.querySelector('.hero-music__icon-play');
 const heroIconPause = heroMusicToggle?.querySelector('.hero-music__icon-pause');
+let mobileAudioUnlocked = false;
+
+function isMobileDevice() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && window.matchMedia('(pointer: coarse)').matches);
+}
+
+function prepareAudioElement(audio) {
+  if (!audio) return;
+  audio.volume = 1;
+  audio.muted = false;
+  audio.setAttribute('playsinline', '');
+  audio.setAttribute('webkit-playsinline', '');
+}
+
+function setMusicNeedsTap(needsTap) {
+  heroMusic?.classList.toggle('needs-tap', needsTap);
+}
 
 function setMusicPlaying(playing) {
   heroMusic?.classList.toggle('is-playing', playing);
   heroIconPlay?.classList.toggle('hidden', playing);
   heroIconPause?.classList.toggle('hidden', !playing);
+  if (playing) setMusicNeedsTap(false);
+}
+
+window.unlockMobileAudio = function unlockMobileAudio() {
+  if (!ourSong || mobileAudioUnlocked) return;
+  mobileAudioUnlocked = true;
+  prepareAudioElement(ourSong);
+  prepareAudioElement(document.getElementById('hiba-voice'));
+  ourSong.load();
+  const prime = ourSong.play();
+  if (prime) {
+    prime
+      .then(() => {
+        ourSong.pause();
+        ourSong.currentTime = 0;
+      })
+      .catch(() => {});
+  }
+};
+
+function startOurSongPlayback() {
+  if (!ourSong) return Promise.reject();
+
+  prepareAudioElement(ourSong);
+  document.getElementById('hiba-voice')?.pause();
+
+  const tryPlay = () => ourSong.play()
+    .then(() => {
+      setMusicPlaying(true);
+      return true;
+    })
+    .catch(() => {
+      setMusicPlaying(false);
+      if (isMobileDevice()) setMusicNeedsTap(true);
+      return false;
+    });
+
+  if (ourSong.readyState >= 2) return tryPlay();
+
+  ourSong.load();
+  return new Promise((resolve) => {
+    const onReady = () => {
+      tryPlay().then(resolve);
+    };
+    ourSong.addEventListener('canplay', onReady, { once: true });
+    ourSong.addEventListener('error', () => resolve(false), { once: true });
+  });
 }
 
 window.playOurSong = function playOurSong() {
   if (!ourSong) return;
-  document.getElementById('hiba-voice')?.pause();
-  ourSong.play()
-    .then(() => setMusicPlaying(true))
-    .catch(() => {});
+  startOurSongPlayback();
 };
 
 window.pauseOurSong = function pauseOurSong() {
@@ -790,9 +852,14 @@ window.pauseOurSong = function pauseOurSong() {
 
 heroMusicToggle?.addEventListener('click', () => {
   if (!ourSong) return;
+  window.unlockMobileAudio();
   if (ourSong.paused) window.playOurSong();
   else window.pauseOurSong();
 });
+
+heroMusicToggle?.addEventListener('touchend', () => {
+  window.unlockMobileAudio();
+}, { passive: true });
 
 ourSong?.addEventListener('play', () => setMusicPlaying(true));
 ourSong?.addEventListener('pause', () => setMusicPlaying(false));

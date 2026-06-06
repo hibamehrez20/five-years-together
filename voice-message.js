@@ -68,7 +68,18 @@
     playBtn.setAttribute('aria-label', audio.paused ? t('voiceNote.playLabel') : t('voiceNote.pauseLabel'));
   };
 
+  function prepareVoiceAudio() {
+    audio.volume = 1;
+    audio.muted = false;
+    audio.setAttribute('playsinline', '');
+    audio.setAttribute('webkit-playsinline', '');
+    if (typeof window.unlockMobileAudio === 'function') {
+      window.unlockMobileAudio();
+    }
+  }
+
   playBtn.addEventListener('click', () => {
+    prepareVoiceAudio();
     if (audio.paused) {
       pauseBackgroundMusic();
       audio.play().catch(() => {

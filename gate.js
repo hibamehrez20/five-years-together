@@ -136,6 +136,9 @@
 
   function advanceSplash() {
     if (!splashActive || splashAdvancing) return;
+    if (typeof window.unlockMobileAudio === 'function') {
+      window.unlockMobileAudio();
+    }
     splashAdvancing = true;
 
     if (splashIndex >= SPLASH_COUNT - 1) {
@@ -286,6 +289,9 @@
 
   function addDigit(d) {
     if (!isPasscodeActive() || digits.length >= 6) return;
+    if (typeof window.unlockMobileAudio === 'function') {
+      window.unlockMobileAudio();
+    }
     clearError();
     digits.push(String(d));
     updateDots();
