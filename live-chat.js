@@ -134,6 +134,9 @@
     clearMessagesView();
     attachMessagesListener();
     updateJarNoteButton();
+    if (typeof window.registerChatPushNotifications === 'function') {
+      window.registerChatPushNotifications(identity);
+    }
   }
 
   function attachMessagesListener() {
@@ -238,6 +241,10 @@
         messagesRef.off('child_added', messagesListener);
         messagesListener = null;
       }
+      const previousIdentity = chatIdentity;
+      if (previousIdentity && typeof window.unregisterChatPushNotifications === 'function') {
+        window.unregisterChatPushNotifications(previousIdentity);
+      }
       chatIdentity = null;
       localStorage.removeItem(IDENTITY_KEY);
       clearMessagesView();
@@ -292,6 +299,9 @@
     renderSetupSteps();
     updateHeaderMeta();
     updateJarNoteButton();
+    if (typeof window.updatePushNotificationUI === 'function') {
+      window.updatePushNotificationUI();
+    }
 
     const body = document.getElementById('live-chat-messages');
     if (body && body.children.length) {
@@ -319,6 +329,9 @@
       updateHeaderMeta();
       attachMessagesListener();
       updateJarNoteButton();
+      if (typeof window.registerChatPushNotifications === 'function') {
+        window.registerChatPushNotifications(chatIdentity);
+      }
     } else {
       showPanel('live-chat-identity');
     }

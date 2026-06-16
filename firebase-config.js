@@ -10,3 +10,6 @@ window.FIREBASE_CONFIG = {
 };
 
 window.CHAT_ROOM_SECRET = "762021-omar-hiba";
+
+// Firebase Console → Project settings → Cloud Messaging → Web Push certificates → Generate key pair
+window.FIREBASE_CONFIG.vapidKey = "YOUR_VAPID_KEY";

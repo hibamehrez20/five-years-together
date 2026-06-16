@@ -8,7 +8,8 @@
       "**/node_modules/**",
       "**/tools/**",
       "README.md",
-      "generate-jar-messages.js"
+      "generate-jar-messages.js",
+      "functions/**"
     ],
     "headers": [
       {
@@ -19,7 +20,26 @@
             "value": "no-cache"
           }
         ]
+      },
+      {
+        "source": "firebase-messaging-sw.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Service-Worker-Allowed",
+            "value": "/"
+          }
+        ]
       }
     ]
+  },
+  "database": {
+    "rules": "firebase-database.rules.json"
+  },
+  "functions": {
+    "source": "functions"
   }
 }

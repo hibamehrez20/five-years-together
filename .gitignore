@@ -5,3 +5,6 @@ desktop.ini
 
 # Local duplicates / scratch
 photos/duplicates/
+
+# Firebase Functions
+functions/node_modules/

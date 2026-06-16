@@ -81,12 +81,18 @@ window.TRANSLATIONS = {
       sendJarNote: "Send today's jar note",
       sendJarNoteSent: "Sent ♥",
       sendJarNotePrefix: "🤍 Today's note for you:\n\n",
+      notifyPrompt: "Get notified when they message you — even when the app is closed ♥",
+      notifyEnable: "Enable notifications",
+      notifyDenied: "Notifications are blocked. Allow them in your browser settings to get message alerts.",
+      notifyNewMessage: "New message ♥",
       setupTitle: "One-time setup needed for live chat",
       setupSteps: [
         "Create a free project at console.firebase.google.com",
         "Build → Realtime Database → Create database (start in test mode)",
         "Project settings → Your apps → Web app → copy the config into firebase-config.js",
         "Realtime Database → Rules → paste the contents of firebase-database.rules.json (change the room name if you changed CHAT_ROOM_SECRET)",
+        "For push notifications: Project settings → Cloud Messaging → Web Push → Generate key pair → paste into firebase-config.js as vapidKey",
+        "Deploy Cloud Functions: firebase login && cd functions && npm install && cd .. && firebase deploy --only functions,database",
         "Push to GitHub — Render redeploys automatically, then you and Omar can chat live ♥"
       ]
     },
@@ -440,12 +446,18 @@ window.TRANSLATIONS = {
       sendJarNote: "ابعت رسالة المرطبان اليوم",
       sendJarNoteSent: "انبعتت ♥",
       sendJarNotePrefix: "🤍 رسالة اليوم إلك:\n\n",
+      notifyPrompt: "وصلك إشعار لما يبعتلك رسالة — حتى لو التطبيق مقفول ♥",
+      notifyEnable: "فعّل الإشعارات",
+      notifyDenied: "الإشعارات مقفولة. فعّليها من إعدادات المتصفح عشان توصلك رسائل.",
+      notifyNewMessage: "رسالة جديدة ♥",
       setupTitle: "محتاجة إعداد مرة وحدة للمحادثة الحية",
       setupSteps: [
         "اعملي مشروع مجاني على console.firebase.google.com",
         "Build → Realtime Database → Create database (test mode)",
         "Project settings → Your apps → Web → انسخي الإعدادات لـ firebase-config.js",
         "Realtime Database → Rules → الصقي محتوى firebase-database.rules.json",
+        "للإشعارات: Project settings → Cloud Messaging → Web Push → Generate key pair → حطّيها في firebase-config.js كـ vapidKey",
+        "Deploy Cloud Functions: firebase login && cd functions && npm install && cd .. && firebase deploy --only functions,database",
         "ارفعي التحديثات على GitHub — Render بينشر تلقائياً — وبلّشوا تحكوا live ♥"
       ]
     },

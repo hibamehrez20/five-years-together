@@ -9,6 +9,21 @@
             ".validate": "newData.hasChildren(['from', 'text', 'createdAt']) && (newData.child('from').val() === 'omar' || newData.child('from').val() === 'hiba') && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 2000 && newData.child('createdAt').isNumber()"
           }
         },
+        "tokens": {
+          ".read": true,
+          "omar": {
+            "$deviceId": {
+              ".write": true,
+              ".validate": "newData.hasChildren(['token', 'updatedAt']) && newData.child('token').isString() && newData.child('token').val().length > 0 && newData.child('updatedAt').isNumber()"
+            }
+          },
+          "hiba": {
+            "$deviceId": {
+              ".write": true,
+              ".validate": "newData.hasChildren(['token', 'updatedAt']) && newData.child('token').isString() && newData.child('token').val().length > 0 && newData.child('updatedAt').isNumber()"
+            }
+          }
+        },
         "qa": {
           ".read": true,
           "$questionId": {

@@ -273,6 +273,10 @@
             <button type="submit" class="chat-phone__send" id="live-chat-send" aria-label="Send">♥</button>
           </form>
         </div>
+        <div class="live-chat-notify hidden" id="live-chat-notify">
+          <p id="live-chat-notify-text"></p>
+          <button type="button" class="live-chat-notify__btn" id="live-chat-notify-btn"></button>
+        </div>
         <button type="button" class="live-chat-switch" id="live-chat-switch">Switch who I am</button>
       </div>
     </div>
@@ -667,8 +671,10 @@
   <script src="photo-messages-i18n.js?v=13"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-  <script src="firebase-config.js?v=3"></script>
-  <script src="live-chat.js?v=2"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js"></script>
+  <script src="firebase-config.js?v=4"></script>
+  <script src="push-notifications.js?v=2"></script>
+  <script src="live-chat.js?v=4"></script>
   <script src="jar-messages-i18n.js?v=6"></script>
   <script src="jar-messages.js?v=4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
